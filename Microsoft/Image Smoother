@@ -1,0 +1,30 @@
+class Solution {
+    public int[][] imageSmoother(int[][] img) {
+        int[][] arr =  new int[img.length][img[0].length];
+        for(int i=0;i<img.length;i++){
+            for(int j=0;j<img[0].length;j++){
+                arr[i][j]=(int)(Math.floor(averages(img,i,j)));
+            }
+        }
+        return arr;
+    }
+    public int averages(int[][] img,int x,int y){
+        int sum=0;
+        int count =0;
+        int dx[]={-1,-1,-1,0,0,1,1,1,0};
+        int dy[]={-1,0,1,-1,1,-1,0,1,0};
+        for(int i=0;i<dx.length;i++){
+                int a = dx[i]+x;
+                int b = dy[i]+y;
+                if(a<0||a>=img.length||b<0||b>=img[0].length){
+                    sum+=0;
+                }else{
+                    sum+=img[a][b];
+                    count++;
+                }
+        }
+        return (sum/count);
+    }
+}
+TC: o(M*N)
+SC: o(M*N)
